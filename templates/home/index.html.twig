@@ -1,0 +1,152 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Path Mapper — Share Your Journey{% endblock %}
+
+{% block stylesheets %}
+<style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        min-height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        color: #fff;
+    }
+
+    .splash {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        padding: 2rem;
+    }
+
+    .splash__icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .splash__title {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        background: linear-gradient(90deg, #f7971e, #ffd200, #e44d26, #ff6b6b, #c471ed, #12c2e9);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradient-shift 6s ease infinite;
+        margin-bottom: 0.5rem;
+    }
+
+    .splash__tagline {
+        font-size: 1.15rem;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 2.5rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+    }
+
+    .splash__description {
+        max-width: 520px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 2.5rem;
+    }
+
+    .splash__coming-soon {
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        margin-bottom: 1rem;
+    }
+
+    .splash__badges {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .splash__badge {
+        height: 58px;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+    }
+
+    .splash__badge--apple {
+        height: 40px;
+    }
+
+    .splash__badge:hover {
+        opacity: 1;
+    }
+
+    .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        z-index: 0;
+        animation: drift 12s ease-in-out infinite alternate;
+    }
+    .orb--1 { width: 350px; height: 350px; background: #c471ed; top: -80px; left: -60px; }
+    .orb--2 { width: 280px; height: 280px; background: #12c2e9; bottom: -60px; right: -40px; animation-delay: -4s; }
+    .orb--3 { width: 200px; height: 200px; background: #f7971e; top: 40%; left: 60%; animation-delay: -8s; }
+
+    @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+    }
+
+    @keyframes drift {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(40px, 30px) scale(1.1); }
+    }
+
+    .splash { animation: fade-up 1s ease-out both; }
+    @keyframes fade-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+    <div class="orb orb--1" aria-hidden="true"></div>
+    <div class="orb orb--2" aria-hidden="true"></div>
+    <div class="orb orb--3" aria-hidden="true"></div>
+
+    <main class="splash" role="main">
+        <div class="splash__icon" aria-hidden="true">🗺️</div>
+        <h1 class="splash__title">Path Mapper</h1>
+        <p class="splash__tagline">Your life. Your journey. Shared.</p>
+        <p class="splash__description">
+            Life is a collection of moments, milestones, and memories that shape who we are.
+            Path Mapper lets you trace the story of your journey and share it with the people
+            who matter most — friends, family, and everyone in between.
+        </p>
+        <p class="splash__coming-soon">Coming Soon</p>
+        <div class="splash__badges">
+            <img class="splash__badge" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+            <img class="splash__badge splash__badge--apple" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+        </div>
+    </main>
+{% endblock %}
